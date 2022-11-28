@@ -1,9 +1,10 @@
 import React from "react";
-
 import { Flex } from "@mantine/core";
-import Hour from "./Hour";
+import { UnstyledButton, Avatar } from "@mantine/core";
 
-export default function Day() {
+export default function Day(props) {
+  const { dayName, hourStatus, schedule, onClickHour, dayOfTheWeek } = props;
+  console.log(dayName, hourStatus, schedule);
   return (
     <Flex
       mih={50}
@@ -14,18 +15,31 @@ export default function Day() {
       direction="column"
       wrap="nowrap"
     >
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
-      <Hour />
+      <UnstyledButton>
+        <Avatar size={40} color="blue">
+          {dayName}
+        </Avatar>
+      </UnstyledButton>
+      {hourStatus.map((h, i) => (
+        <Hour
+          key={`${h}${i}`}
+          status={h}
+          onClickHour={onClickHour}
+          hourOfTheDay={i}
+          dayOfTheWeek={dayOfTheWeek}
+        />
+      ))}
     </Flex>
+  );
+}
+
+function Hour(props) {
+  const { status, onClickHour, hourOfTheDay, dayOfTheWeek } = props;
+  // console.log(status);
+  // return day and hour
+  return (
+    <UnstyledButton onClick={() => onClickHour(hourOfTheDay, dayOfTheWeek)}>
+      {status}
+    </UnstyledButton>
   );
 }

@@ -3,7 +3,8 @@ import React from "react";
 import { Flex } from "@mantine/core";
 import Day from "./Day";
 
-export default function Week() {
+export default function Week(props) {
+  const { schedule, setSchedule, onClickHour } = props;
   return (
     <Flex
       mih={50}
@@ -14,13 +15,17 @@ export default function Week() {
       direction="row"
       wrap="nowrap"
     >
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
+      {schedule.map((s, i) => (
+        <Day
+          schedule={schedule}
+          key={`${s}${i}`}
+          onClickHour={onClickHour}
+          setSchedule={setSchedule}
+          dayName={s.name}
+          dayOfTheWeek={i}
+          hourStatus={s.hourStatus}
+        />
+      ))}
     </Flex>
   );
 }
