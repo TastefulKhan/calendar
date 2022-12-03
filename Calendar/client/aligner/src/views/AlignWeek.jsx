@@ -14,12 +14,25 @@ function AlignWeek() {
   ]);
 
   function onClickHour(hourOfTheDay, dayOfTheWeek) {
-    setSchedule([
-      ...schedule,
-      (schedule[dayOfTheWeek].hourStatus[hourOfTheDay] = 2),
-    ]);
+    setSchedule(
+      schedule.map((day) => {
+        if (day.name === weekNames[dayOfTheWeek]) {
+          if (day.hourStatus[hourOfTheDay] === 0) {
+            day.hourStatus[hourOfTheDay] = 1;
+          } else {
+            day.hourStatus[hourOfTheDay] = 0;
+          }
+        } else {
+          day = day;
+        }
+        return day;
+      })
+    );
   }
 
+  useEffect(() => {
+    console.log(schedule);
+  }, [schedule]);
   return (
     <Week
       schedule={schedule}

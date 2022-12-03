@@ -4,7 +4,7 @@ import { UnstyledButton, Avatar } from "@mantine/core";
 
 export default function Day(props) {
   const { dayName, hourStatus, schedule, onClickHour, dayOfTheWeek } = props;
-  console.log(dayName, hourStatus, schedule);
+  // console.log(dayName, hourStatus, schedule);
   return (
     <Flex
       mih={50}
