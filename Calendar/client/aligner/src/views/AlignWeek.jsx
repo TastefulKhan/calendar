@@ -17,13 +17,8 @@ function AlignWeek() {
     setSchedule(
       schedule.map((day) => {
         if (day.name === weekNames[dayOfTheWeek]) {
-          if (day.hourStatus[hourOfTheDay] === 0) {
-            day.hourStatus[hourOfTheDay] = 1;
-          } else {
-            day.hourStatus[hourOfTheDay] = 0;
-          }
-        } else {
-          day = day;
+          day.hourStatus[hourOfTheDay] =
+            day.hourStatus[hourOfTheDay] === 0 ? 1 : 0;
         }
         return day;
       })
