@@ -25,9 +25,6 @@ function AlignWeek() {
     );
   }
 
-  useEffect(() => {
-    console.log(schedule);
-  }, [schedule]);
   return (
     <Week
       schedule={schedule}
