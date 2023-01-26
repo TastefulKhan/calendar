@@ -5,14 +5,29 @@ createServer(
   createYoga({
     schema: createSchema({
       typeDefs: /* GraphQL */ `
-        type Query {
-          hello: String
+        type Video {
+          title: String
         }
+        type video {
+          text: String
+        }
+        type Query {
+          createVideo: video
+          hello: String
+          videos: [Video!]!
+        }
+        input NewVideo {
+          title: String!
+        }
+
         type Mutation {
           publishDate(value: String): String
+          addVideo(value: String): String
+          createVideo(input: NewVideo!): Video
         }
         type Subscription {
           dateShare: String
+          videoAdded(title: String!): Video
         }
       `,
       resolvers: {
@@ -23,12 +38,23 @@ createServer(
           publishDate: (value, args) => {
             pubSub.publish("publishDate", args);
           },
+          createVideo: (value, args) => {
+            console.log("POP");
+            pubSub.publish("createVideo", args);
+          },
         },
         Subscription: {
+          videoAdded: {
+            subscribe: (value) => pubSub.subscribe("createVideo"),
+            resolve: (x) => {
+              console.log("videoAdded", x);
+              return x;
+            },
+          },
           dateShare: {
             subscribe: (value) => pubSub.subscribe("publishDate"),
             resolve: ({ value }) => {
-              console.log(value);
+              console.log("dateShare", value);
               return value;
             },
           },

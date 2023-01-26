@@ -1,41 +1,12 @@
-import { useState } from "react";
-import AlignWeek from "./views/AlignWeek";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
-import "./App.css";
+import React from "react";
+import apolloClient from "./apolloSetup";
+import { ApolloProvider } from "@apollo/react-hooks";
+import NewVideoNotification from "./components/NewVideoNotification";
 
-const client = new ApolloClient({
-  uri: "https://flyby-gateway.herokuapp.com/",
-  cache: new InMemoryCache(),
-});
-
-client
-  .query({
-    query: gql`
-      query GetLocations {
-        locations {
-          id
-          name
-          description
-          photo
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="App">
-      TESTTEXT
-      <AlignWeek />
-    </div>
-  );
-}
+const App = () => (
+  <ApolloProvider client={apolloClient}>
+    <NewVideoNotification />
+  </ApolloProvider>
+);
 
 export default App;

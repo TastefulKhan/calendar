@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.1",
+    "@apollo/react-hooks": "^4.0.0",
     "@emotion/react": "^11.10.5",
+    "@graphql-tools/schema": "^9.0.12",
     "@mantine/carousel": "^5.8.3",
     "@mantine/core": "^5.8.3",
     "@mantine/dates": "^5.8.3",
@@ -26,11 +27,16 @@
     "@tiptap/extension-link": "^2.0.0-beta.204",
     "@tiptap/react": "^2.0.0-beta.204",
     "@tiptap/starter-kit": "^2.0.0-beta.204",
-    "dayjs": "^1.11.6",
-    "embla-carousel-react": "^7.0.5",
-    "graphql": "^16.6.0",
+    "apollo-boost": "^0.4.9",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "apollo-link-ws": "^1.0.20",
+    "graphql": "^15.8.0",
+    "graphql-tag": "^2.12.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "save": "^2.9.0",
+    "subscriptions-transport-ws": "^0.9.19"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
